@@ -87,12 +87,108 @@ class 类名:
 
 """
 
+# class Car:
+#     def __init__(self,c_color,c_brand,c_name,c_price):
+#         self.c_color = c_color
+#         self.c_brand = c_brand
+#         self.c_name = c_name
+#         self.c_price = c_price
+#         print("Car 类型的对象初始化完毕,对象属性已填加完毕 .")
+#
+# #定义实例方法
+#     def running(self):
+#         print(f"{self.c_brand} {self.c_name}正在高速行驶中...")
+#
+#     def total_cost(self,discount,rate):
+#         """
+#         计算提车的总费用,包含两个部分:车的价格,税费
+#         :param discount: 折扣
+#         :param rate: 税率
+#         :return: 提车的费用
+#         """
+#         total_cost = self.c_price * discount + rate * self.c_price
+#         return total_cost
+
+#测试
+# c1 = Car("red","BMW","X7",800000)
+# c1.running()
+# print(c1)
+# total_price = c1.total_cost(0.9,0.05)
+# print("提车的费用为:",total_price)
+
+#----------------------------魔法方法-----------------------------------------
+
+"""
+#魔法方法是指python中提供的双下划线开头和结尾的特殊方法,用于定义类的特殊行为,比如:__init__
+#不需要手动调用,python会在合适的时机自动调用
+    __init__:初始化方法
+    __str__:字符串表示的方法
+    __eq__:比较两个对象是否相等(equal)
+    __lt__,__le__,__gt__,__ge__:支持比较两个对象的大小
+    (小于-lt-<,小于等于-le-<=,大于-gt->,大于等于-ge->=)
+    
+
+"""
+
+# class Car:
+#     def __init__(self,c_color,c_brand,c_name,c_price):
+#         self.c_color = c_color
+#         self.c_brand = c_brand
+#         self.c_name = c_name
+#         self.c_price = c_price
+#         print("Car 类型的对象初始化完毕,对象属性已填加完毕 .")
+#
+# #定义实例方法
+#     def running(self):
+#         print(f"{self.c_brand} {self.c_name}正在高速行驶中...")
+#
+#     def total_cost(self,discount,rate):
+#         """
+#         计算提车的总费用,包含两个部分:车的价格,税费
+#         :param discount: 折扣
+#         :param rate: 税率
+#         :return: 提车的费用
+#         """
+#         total_cost = self.c_price * discount + rate * self.c_price
+#         return total_cost
+#
+#     def __str__(self):
+#         return f"{self.c_color},{self.c_brand},{self.c_name},{self.c_price}"
+#     def __eq__(self,other):
+#         return self.c_color == other.c_color and self.c_brand == other.c_brand and self.c_name == other.c_name and self.c_price == other.c_price
+#     def __lt__(self,other):
+#         return self.c_price < other.c_price
+#
+# c1 = Car("白色","BYD","X7",300000)
+# c2 = Car("白色","BYD","X7",500000)
+# print(c1)
+# print(c2)
+# print(c1 == c2)
+# print(c1.c_price < c2.c_price)
+# print(c1 < c2)
+
+#--------------------------------实例属性和类属性---------------------------------------
+"""
+    实例属性:属于每一个具体对象的属性,每个对象都是独立的.(各个对象特有的数据)
+    类属性:类属性是属于类本身的属性,所有实力共享的.(所有对象共享的数据或配置)
+    self.brand = c_brand
+    实例属性(通过 实例对象.属性 的方式操作)
+    wheel = 4 #轮胎的数量
+    tax_rete = 0.1 #购置税
+    类属性(通过 类名.属性 的方式操作)
+"""
+
 class Car:
+    #类属性 (所有实例对象共享的)
+    wheel = 4 #轮胎的数量
+    tax_rete = 0.1 #购置税的税率
     def __init__(self,c_color,c_brand,c_name,c_price):
+        #实例属性
         self.c_color = c_color
         self.c_brand = c_brand
         self.c_name = c_name
         self.c_price = c_price
+        self.wheel = 4
         print("Car 类型的对象初始化完毕,对象属性已填加完毕 .")
 
 #定义实例方法
@@ -109,26 +205,14 @@ class Car:
         total_cost = self.c_price * discount + rate * self.c_price
         return total_cost
 
-#测试
-c1 = Car("red","BMW","X7",800000)
-c1.running()
-total_price = c1.total_cost(0.9,0.05)
-print("提车的费用为:",total_price)
+c1 = Car("白色","BYD","X7",300000)
+print(c1.c_brand)
+print(c1.wheel) #通过实例对象,查找属性时,会先查找实例属性;当实例属性不存在在查找类属性
 
-#----------------------------魔法方法-----------------------------------------
-#魔法方法是指python中提供的双下划线开头和结尾的特殊方法,用于定义类的特殊行为,比如:__init__
-#不需要手动调用,python会在合适的时机自动调用
-"""
-    __init__:初始化方法
-    __str__:字符串表示的方法
-    __eq__:比较两个对象是否相等(equal)
-    __lt__,__le__,__gt__,__ge__:支持比较两个对象的大小(小于-lt,小于等于-le,大于-gt,大于等于-ge)
-    
-
-"""
+#通过类名访问类属性
+print(Car.wheel,Car.tax_rete)
 
 
-
-
-
+# c2 = Car("白色","BYD","X7",500000)
+# print(c2)
 
