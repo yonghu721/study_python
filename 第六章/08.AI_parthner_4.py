@@ -46,8 +46,10 @@ def load_sessions():
         for file in os.listdir("sessions"):
             if file.endswith(".json"):
                 sessions_list.append(file[:-5])
+    sessions_list.sort(reverse=True)#排序,降序排序
 
     return sessions_list
+
 
 #加载指定会话信息
 def load_session(session_id):
@@ -153,6 +155,7 @@ with st.sidebar:
 
     #分隔线
     st.divider()
+    
     #伴侣信息
     st.subheader("伴侣信息")
     #昵称输入框
